@@ -1,0 +1,71 @@
+# Dynamic Group: oci-nightly-stop-dg
+All {instance.id = 'ocid1.instance.oc1.xxx.xxxxx'}
+
+# IAM Policy: oci-nightly-stop-policy
+define tenancy usage-report as ocid1.tenancy.oc1..aaaaaaaaned4fkpkisbwjlr56u7cj63lf3wffbilvqknstgtvzub7vhqkggq
+endorse dynamic-group oci-nightly-stop-dg to read objects in tenancy usage-report
+Allow dynamic-group oci-nightly-stop-dg to inspect compartments in tenancy
+Allow dynamic-group oci-nightly-stop-dg to read usage-report in tenancy
+Allow dynamic-group oci-nightly-stop-dg to inspect domains in tenancy
+### Analytics
+Allow dynamic-group oci-nightly-stop-dg to read analytics-instance in tenancy
+### Database
+Allow dynamic-group oci-nightly-stop-dg to inspect db-systems in tenancy
+Allow dynamic-group oci-nightly-stop-dg to inspect db-nodes in tenancy
+Allow dynamic-group oci-nightly-stop-dg to inspect autonomous-databases in tenancy
+### Compute
+Allow dynamic-group oci-nightly-stop-dg to read instances in tenancy
+### Data Integration
+Allow dynamic-group oci-nightly-stop-dg to inspect dis-workspaces in tenancy
+### Data Science
+Allow dynamic-group oci-nightly-stop-dg to inspect data-science-model-deployments in tenancy
+Allow dynamic-group oci-nightly-stop-dg to inspect data-science-notebook-sessions in tenancy
+### Digital Assistant
+Allow dynamic-group oci-nightly-stop-dg to inspect oda-instances in tenancy
+### GoldenGate
+Allow dynamic-group oci-nightly-stop-dg to inspect goldengate-deployments in tenancy
+### Integration Service
+Allow dynamic-group oci-nightly-stop-dg to read integration-instance in tenancy
+### MySQL
+Allow dynamic-group oci-nightly-stop-dg to read mysql-instances in tenancy
+### Visual Builder
+Allow dynamic-group oci-nightly-stop-dg to read visualbuilder-instance in tenancy
+
+## For Stop
+### Analytics
+Allow dynamic-group oci-nightly-stop-dg to use analytics-instance in tenancy where request.operation = 'StopAnalyticsInstance'
+Allow dynamic-group oci-nightly-stop-dg to manage analytics-instance in tenancy where request.operation = 'UpdateAnalyticsInstance'
+### Database
+Allow dynamic-group oci-nightly-stop-dg to manage db-nodes in tenancy where request.operation = 'DbNodeAction'
+Allow dynamic-group oci-nightly-stop-dg to manage db-systems in tenancy where request.operation = 'UpdateDbSystem'
+Allow dynamic-group oci-nightly-stop-dg to use autonomous-databases in tenancy where request.operation = 'StopAutonomousDatabase'
+Allow dynamic-group oci-nightly-stop-dg to use autonomous-databases in tenancy
+Allow dynamic-group oci-nightly-stop-dg to manage autonomous-databases in tenancy where request.operation = 'UpdateAutonomousDatabase'
+### Compute
+Allow dynamic-group oci-nightly-stop-dg to use instances in tenancy where request.operation = 'InstanceAction'
+### Data Integration
+Allow dynamic-group oci-nightly-stop-dg to manage dis-workspaces in tenancy where any {request.operation = 'StopWorkspace', request.operation = 'GetWorkspace'}
+### Data Science
+Allow dynamic-group oci-nightly-stop-dg to manage data-science-model-deployments in tenancy where any {request.operation = 'DeactivateModelDeployment', request.operation = 'GetModelDeployment'}
+Allow dynamic-group oci-nightly-stop-dg to manage data-science-notebook-sessions in tenancy where any {request.operation = 'DeactivateNotebookSession', request.operation = 'GetNotebookSession'}
+### Digital Assistant
+Allow dynamic-group oci-nightly-stop-dg to use oda-instances in tenancy where any {request.operation = 'StopOdaInstance', request.operation = 'GetOdaInstance'}
+### GoldenGate
+Allow dynamic-group oci-nightly-stop-dg to use goldengate-deployments in tenancy where request.operation = 'StopDeployment'
+Allow dynamic-group oci-nightly-stop-dg to use goldengate-deployments in tenancy where request.operation = 'UpdateDeployment'
+Allow dynamic-group oci-nightly-stop-dg to use goldengate-deployments in tenancy where request.operation = 'GetDeployment'
+### Integration Service
+Allow dynamic-group oci-nightly-stop-dg to use integration-instance in tenancy where request.operation = 'StopIntegrationInstance'
+Allow dynamic-group oci-nightly-stop-dg to use integration-instance in tenancy where request.operation = 'UpdateIntegrationInstance'
+Allow dynamic-group oci-nightly-stop-dg to use process-automation-instance in tenancy
+Allow dynamic-group oci-nightly-stop-dg to manage process-automation-instance in tenancy where request.operation = 'UpdateProcessInstances'
+Allow dynamic-group oci-nightly-stop-dg to manage process-automation-instance in tenancy where request.operation = 'UpdateProcessInstance'
+### MySQL
+Allow dynamic-group oci-nightly-stop-dg to use mysql-instances in tenancy where request.operation = 'StopDbSystem'
+### Visual Builder
+Allow dynamic-group oci-nightly-stop-dg to use visualbuilder-instance in tenancy where request.operation = 'StopVbInstance'
+
+Allow dynamic-group oci-nightly-stop-dg to inspect users in tenancy
+Allow dynamic-group oci-nightly-stop-dg to read clusters in tenancy where request.operation = 'GetCluster'
+Allow dynamic-group oci-nightly-stop-dg to read cluster-node-pools in tenancy where request.operation = 'GetNodePool'
+Allow dynamic-group oci-nightly-stop-dg to read desktop-pool in tenancy where request.operation = 'GetDesktopPool'
