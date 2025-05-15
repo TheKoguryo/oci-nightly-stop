@@ -387,4 +387,4 @@ if __name__ == "__main__":
         try:
             send_nightly_stop_notification(config, signer, created_by, revised_target_resources[created_by])
         except Exception as ex:
-            logging.error("ERROR: ", ex, flush=True)
+            logging.error("ERROR: ", ex)

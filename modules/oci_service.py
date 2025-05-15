@@ -74,8 +74,10 @@ class OciService:
             try:
                 response, request_date = self._perform_resource_action(config, signer, resource.id, 'STOP')
                 processed_resources.append(resource)
-            except oci.exceptions.ServiceError as e:              
-                logging.error(f"Error stopping resource {self._get_name(resource)}: {e}")             
+            except oci.exceptions.ServiceError as e:        
+                logging.error(f"Error stopping resource {self._get_name(resource)}: {e}")     
+            except Exception as ex:
+                logging.error("ERROR: ", ex)
             else:
                 logging.info("    stop requested: {} ({}) in {}".format(self._get_name(resource), response.lifecycle_state, resource.compartment_name))
 

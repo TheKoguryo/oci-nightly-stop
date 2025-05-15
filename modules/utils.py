@@ -94,7 +94,7 @@ def get_created_by(config, signer, resource):
                     if ex.status == 404:
                         pass
                     else:
-                        logging.error("ERROR: ", ex, flush=True)
+                        logging.error("ERROR: ", ex)
 
             if created_by.startswith('ocid1.user.'):    
                 identity_domain_name, user_name = get_user_by_user_id(config, signer, created_by)
@@ -120,7 +120,7 @@ def get_created_by(config, signer, resource):
                 get_node_pool_response = container_engine_client.get_node_pool(node_pool_id=node_pool_id)
                 created_by = get_created_by(config, signer, get_node_pool_response.data)
             except oci.exceptions.ServiceError as ex:
-                logging.error("ERROR: ", ex, flush=True)
+                logging.error("ERROR: ", ex)
                 pass
         elif oracle_tags_created_by == 'oke':
             oke_cluster_id = resource.metadata['oke-cluster-id']
@@ -132,7 +132,7 @@ def get_created_by(config, signer, resource):
                 get_cluster_response = container_engine_client.get_cluster(cluster_id=oke_cluster_id)
                 created_by = get_created_by(config, signer, get_cluster_response.data)
             except oci.exceptions.ServiceError as ex:
-                logging.error("ERROR: ", ex, flush=True)
+                logging.error("ERROR: ", ex)
                 pass
         elif oracle_tags_created_by.startswith('ocid1.desktoppool.'):
             desktoppool_id = oracle_tags_created_by
@@ -144,7 +144,7 @@ def get_created_by(config, signer, resource):
                 get_desktop_pool_response = desktops_client.get_desktop_pool(desktop_pool_id=desktoppool_id)
                 created_by = get_created_by(config, signer, get_desktop_pool_response.data)
             except oci.exceptions.ServiceError as ex:
-                logging.error("ERROR: ", ex, flush=True)
+                logging.error("ERROR: ", ex)
                 pass            
         else:
             created_by = oracle_tags_created_by
@@ -189,7 +189,7 @@ def get_user_by_user_id(config, signer, user_id):
         except oci.exceptions.ServiceError as ex:
             if ex.status == 404:
                 continue
-            logging.error("ERROR: ", ex, flush=True)
+            logging.error("ERROR: ", ex)
             continue
 
     #user_name = domain_display_name + "/" + user.display_name
@@ -528,7 +528,7 @@ def send_email(sender_email, sender_name, to, cc, bcc, subject, body):
         server.sendmail(sender_email, recipients.split(','), msg.as_string())
         server.close()
     except Exception as ex:
-        logging.error("ERROR: ", ex, flush=True)
+        logging.error("ERROR: ", ex)
     else:
         logging.info ("INFO: Email successfully sent!")
 
