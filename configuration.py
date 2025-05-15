@@ -15,7 +15,6 @@ is_internal_tenancy = 'FALSE'
 enable_first_friday_all_stop = 'TRUE'
 
 # Set top level compartment OCID. Tenancy OCID will be set if null.
-# apackrsct
 tenancy_id = 'ocid1.tenancy.oc1..xxx'
 top_level_compartment_id = 'ocid1.tenancy.oc1..xxx'
 
