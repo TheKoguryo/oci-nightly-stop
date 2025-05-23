@@ -136,7 +136,9 @@ class OciService:
                 if response != None:
                     processed_resources.append(resource)
             except oci.exceptions.ServiceError as e:
-                logging.error(f"Error Changing resource {self._get_name(resource)}: {e}")                
+                logging.error(f"Error Changing resource {self._get_name(resource)}: {e}")      
+            except Exception as ex:
+                logging.error("ERROR: ", ex)                          
             else:
                 if response != None:
                     send_license_type_change_notification(config, signer, self.SERVICE_NAME, resource, request_date, 'BYOL')

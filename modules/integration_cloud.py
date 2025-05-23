@@ -58,15 +58,11 @@ class IntegrationCloud(OciService):
             details
         )
     
-        response = client.get_integration_instance(
-            resource_id
-        )
-        
-        oci.wait_until(
+        response = oci.wait_until(
             client, 
-            response, 
-            evaluate_response=lambda r: r.data.lifecycle_state == 'ACTIVE'
-        )
+            client.get_integration_instance(resource_id), 
+            evaluate_response=lambda r: r.data.lifecycle_state in ['ACTIVE', 'INACTIVE']
+        )           
 
         response = client.get_integration_instance(
             resource_id

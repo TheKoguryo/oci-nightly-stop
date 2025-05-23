@@ -44,19 +44,11 @@ class Analytics(OciService):
             resource_id,
             details
         )
-    
-        response = client.get_analytics_instance(
-            resource_id
-        )      
-    
-        oci.wait_until(
+
+        response = oci.wait_until(
             client, 
-            response, 
-            evaluate_response=lambda r: r.data.lifecycle_state == 'ACTIVE'
-        )
-    
-        response = client.get_analytics_instance(
-            resource_id
-        )    
+            client.get_analytics_instance(resource_id), 
+            evaluate_response=lambda r: r.data.lifecycle_state in ['ACTIVE', 'INACTIVE']
+        )        
     
         return response.data, update_response.headers['Date']     

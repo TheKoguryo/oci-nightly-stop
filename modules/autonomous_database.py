@@ -42,19 +42,11 @@ class AutonomousDatabase(OciService):
             details
         )
     
-        response = client.get_autonomous_database(
-            resource_id
-        )      
-    
-        oci.wait_until(
+        response = oci.wait_until(
             client, 
-            response, 
-            evaluate_response=lambda r: r.data.lifecycle_state == 'AVAILABLE'
-        )
-    
-        response = client.get_autonomous_database(
-            resource_id
-        )      
+            client.get_autonomous_database(resource_id), 
+            evaluate_response=lambda r: r.data.lifecycle_state in ['AVAILABLE', 'STOPPED']
+        )   
     
         return response.data, update_response.headers['Date']
 

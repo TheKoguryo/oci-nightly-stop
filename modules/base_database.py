@@ -60,20 +60,12 @@ class BaseDatabase(OciService):
             details
         )
 
-        response = client.get_db_system(
-            resource_id
-        )  
-    
-        oci.wait_until(
+        response = oci.wait_until(
             client, 
-            response, 
-            evaluate_response=lambda r: r.data.lifecycle_state == 'AVAILABLE'
-        )
+            client.get_db_system(resource_id), 
+            evaluate_response=lambda r: r.data.lifecycle_state in ['AVAILABLE', 'STOPPED']
+        ) 
 
-        response = client.get_db_system(
-            resource_id
-        )
-    
         return response.data, update_response.headers['Date']
 
 
